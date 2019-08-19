@@ -408,21 +408,41 @@ nav ul li a:hover{
     text-align: right;
 }
 
-
+/* these */
 
 .products-list.suppressed .col-sm-4{
-    display: none;
+    opacity: 0;
 }
-
 
 .products-list .col-sm-4{
-    display: block;
+    opacity: 1;
 }
+
+.products-list.suppressed .col-sm-4:nth-child(n+7) {
+    height: 0;
+    pointer-events: none;
+}
+
+.products-list .col-sm-4:nth-child(n+7) {
+    transition: all .25s ease;  
+}
+
+
+.products-list.suppressed .col-sm-4:nth-child(n+7) {
+    transition: all 0 ease;    
+}
+
+
+
+
 
 
 .products-list.suppressed .col-sm-4:nth-child(-n+6) {
     display: block;
+    opacity: 1;
 }
+
+/* these */
 
 .expand-contract.expanded-state .plus{
     display: inline-block;
@@ -601,7 +621,8 @@ margin-right: 4px;
 
 ul.doc-nav{
     /* width: 95%; */
-    margin-top: 30px;
+    /* margin-top: 30px; */
+    margin-top: 90px;
     padding-left: 0;
     width: fit-content;
 }
@@ -643,6 +664,13 @@ transition: all .5s ease;
         color: #50C8EC;
         text-decoration: none;
         }
+
+        ul.doc-nav li a:active,
+        ul.doc-nav li a:focus,
+        ul.doc-nav li a:visited{
+            text-decoration: none;
+        }
+
 
 .version-table{
     width: 100%;
@@ -707,7 +735,14 @@ position: relative;
 
 .doc-nav.fixed{
     position: fixed;
-    top: 160px;
+    top: 180px;
+    margin-top: 0;
+}
+
+
+.page-section{
+    padding-top: 160px;
+    margin-top: -160px;
 }
 
 @media only screen and (max-width: 768px) {
