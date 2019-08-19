@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Paccar API Catalog | Documentation</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -50,7 +50,7 @@
         </div>
         <div class="breadcrumbs">
             <div class="container pt-10">
-                    <a class="breadcrumb-active" href="index.html">HOME</a>
+                    <a class="breadcrumb-active" href="catalog.html">API CATALOG</a>
                 <div class="right-arrow-breadcrumb">></div><a class="breadcrumb-active" href="groups.html">API GROUPS</a>
                 <div class="right-arrow-breadcrumb">></div>
                 <span class="breadcrumb-current">DOCUMENTATION</span>
@@ -101,9 +101,13 @@
                 </div>
 
                 <div class="col-sm-7 documentation-section">
-                    <span class="anchor" id="overview"></span>
 
 
+
+                    
+                     <div class="page-section" id="overview">
+                          <!-- page section -->
+                    <!-- <span class="anchor" id="overview"></span> -->
                     <h3>Overview</h3>
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras et velit nec lectus consectetur
@@ -115,7 +119,12 @@
                         tellus eu, porta nulla.
                     </p>
                     <hr />
-                    <span class="anchor" id="getting-started"></span>
+                     <!-- page section -->
+                </div>
+              
+                     <div class="page-section" id="getting-started">
+                          <!-- page section -->
+                    <!-- <span class="anchor" id="getting-started"></span> -->
                     <h3>Getting Started</h3>
                     <table class="version-table">
                         <tr>
@@ -181,7 +190,16 @@
                         tellus eu, porta nulla.
                     </p>
                     <hr />
-                    <span class="anchor" id="api-calls"></span>
+                     <!-- page section -->
+                    </div>
+            
+
+
+
+                  
+                    <div class="page-section" id="api-calls">
+                         <!-- page section -->
+                    <!-- <span class="anchor" id="api-calls"></span> -->
                     <h3>API Calls</h3>
 <pre><code class="language-css">$ curl -i -L --user api: -d
 '{"slug":"documentation", "name":"Paccar Documentation", "source_language_code":"en"}'
@@ -191,7 +209,9 @@ https://www.paccar.com/api/2/project/documentation/
 
 ​$ curl -i -L --user api:<token> -X GET \</code></pre>
                     <hr />
-
+                             <!-- page section -->
+                </div>
+           
 
                 </div>
 
@@ -485,41 +505,63 @@ https://www.paccar.com/api/2/project/documentation/
         ga('create', 'UA-XXXXX-Y', 'auto'); ga('set', 'transport', 'beacon'); ga('send', 'pageview')
     </script>
     <script src="https://www.google-analytics.com/analytics.js" async></script>
+<script type="text/javascript">
 
 
-    <script type="text/javascript">
+$(window).scroll(function() {
+var windscroll = $(window).scrollTop();
+if (windscroll >= $('.documentation-section').offset().top - 100 && windscroll <= $('.plans').offset().top - 300) {
+$('.doc-nav').addClass('fixed');
+} else if(windscroll >= $('.plans').offset().top - 300){
+$('.doc-nav').removeClass('fixed');
 
-
-        $('.doc-nav li').click(function () {
-
-
-
-            $('.doc-nav li').removeClass('active');
-            $(this).addClass('active');
-
-
-        });
-
-
-
-
-        $(window).scroll(function() {
-    var windscroll = $(window).scrollTop();
-    if (windscroll >= $('.documentation-section').offset().top - 100 && windscroll <= $('.plans').offset().top - 300) {
-        $('.doc-nav').addClass('fixed');
-    } else if(windscroll >= $('.plans').offset().top - 300){
-        $('.doc-nav').removeClass('fixed');
-        console.log('else is');
-    } else {
-        $('.doc-nav').removeClass('fixed');
-    }
+} else {
+$('.doc-nav').removeClass('fixed');
+}
 
 }).scroll();
 
 
+$(document).ready(function() {
+		$('.doc-nav a').bind('click', function(e) {
+				e.preventDefault(); // prevent hard jump, the default behavior
+
+				var target = $(this).attr("href"); // Set the target as variable
+
+				// perform animated scrolling by getting top-position of target-element and set it as scroll target
+				$('html, body').stop().animate({
+						scrollTop: $(target).offset().top 
+				}, 600, function() {
+						location.hash = target; //attach the hash (#jumptarget) to the pageurl
+				});
+
+				return false;
+		});
+});
+
+$(window).scroll(function() {
+		var scrollDistance = $(window).scrollTop();
+
+		// Show/hide menu on scroll
+		//if (scrollDistance >= 850) {
+		//		$('nav').fadeIn("fast");
+		//} else {
+		//		$('nav').fadeOut("fast");
+		//}
+	
+		// Assign active class to nav links while scolling
+		$('.page-section').each(function(i) {
+				if ($(this).position().top <= scrollDistance) {
+						$('.doc-nav li.active').removeClass('active');
+						$('.doc-nav li').eq(i).addClass('active');
+				}
+		});
+}).scroll();
+
+</script>
 
 
-    </script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.0/prism.min.js"></script>
 </body>
 
